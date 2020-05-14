@@ -1,0 +1,6 @@
+get_filename_component(PACKAGE_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+set(LINEMARKERS_INCLUDE_DIRS "@CONF_INCLUDE_DIRS@")
+
+if(NOT TARGET linemarkers)
+  include("${PACKAGE_CMAKE_DIR}/@LINEMARKERS_EXPORT@.cmake")
+endif()
