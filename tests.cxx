@@ -5,7 +5,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/process.hpp>
 
-#include "linemarkers.hxx"
+#include "linemarkers/linemarkers.hxx"
 
 namespace bfs = boost::filesystem;
 namespace bp = boost::process;

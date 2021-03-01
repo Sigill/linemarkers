@@ -1,21 +1,21 @@
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 project(linemarkers)
 
-set(LINEMARKERS_VERSION "0.1.0")
+set(LINEMARKERS_VERSION "0.1.1")
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Boost REQUIRED COMPONENTS system filesystem program_options)
 
-add_library(linemarkers linemarkers.cxx)
+add_library(linemarkers linemarkers/linemarkers.cxx)
 target_include_directories(linemarkers
     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
            $<INSTALL_INTERFACE:include>)
 
 # Define public headers to get them automatically installed.
 set_target_properties(linemarkers PROPERTIES
-    PUBLIC_HEADER linemarkers.hxx)
+    PUBLIC_HEADER linemarkers/linemarkers.hxx)
 
 add_executable(linemarkers-tool main.cxx)
 set_target_properties(linemarkers-tool PROPERTIES
