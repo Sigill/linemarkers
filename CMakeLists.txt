@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.1)
 project(linemarkers)
 
-set(LINEMARKERS_VERSION "0.1.2")
+set(LINEMARKERS_VERSION "0.1.3")
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -52,12 +52,10 @@ install(EXPORT ${LINEMARKERS_EXPORT}
 # [2] https://gitlab.kitware.com/cmake/community/wikis/doc/tutorials/How-to-create-a-ProjectConfig.cmake-file
 
 # Create the config file for the build tree.
-set(CONF_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include")
 configure_file(LinemarkersConfig.in.cmake
     "${PROJECT_BINARY_DIR}/LinemarkersConfig.cmake" @ONLY)
 
 # Create the config file for the install tree.
-set(CONF_INCLUDE_DIRS "\${PACKAGE_CMAKE_DIR}/${CMAKE_INSTALL_INCLUDEDIR}")
 configure_file(LinemarkersConfig.in.cmake
     "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/LinemarkersConfig.cmake" @ONLY)
 
