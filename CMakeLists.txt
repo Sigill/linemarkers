@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.1)
 project(linemarkers)
 
-set(LINEMARKERS_VERSION "0.1.1")
+set(LINEMARKERS_VERSION "0.1.2")
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -24,6 +24,9 @@ set_target_properties(linemarkers-tool PROPERTIES
 target_link_libraries(linemarkers-tool PRIVATE linemarkers Boost::program_options Boost::filesystem)
 
 include(GNUInstallDirs)
+set(CMAKE_INSTALL_CMAKEDIR "lib/cmake/linemarkers" CACHE PATH "Install location for cmake related files")
+mark_as_advanced(CMAKE_INSTALL_CMAKEDIR)
+
 include(CMakePackageConfigHelpers)
 
 set(LINEMARKERS_EXPORT LinemarkersTargets)
@@ -41,7 +44,7 @@ install(TARGETS linemarkers linemarkers-tool
 export(TARGETS linemarkers FILE "${PROJECT_BINARY_DIR}/${LINEMARKERS_EXPORT}.cmake")
 # Create the export file for the install tree.
 install(EXPORT ${LINEMARKERS_EXPORT}
-    DESTINATION "${CMAKE_INSTALL_PREFIX}")
+  DESTINATION "${CMAKE_INSTALL_CMAKEDIR}")
 
 # The config files could be generated using a macro (see [1]), but it seems
 # to be more complex than to do it manually (see [2]).
@@ -68,7 +71,7 @@ write_basic_package_version_file(
 install(FILES
     "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/LinemarkersConfig.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/LinemarkersConfigVersion.cmake"
-    DESTINATION "${CMAKE_INSTALL_PREFIX}")
+    DESTINATION "${CMAKE_INSTALL_CMAKEDIR}")
 
 include(CTest)
 
